@@ -1,15 +1,11 @@
 # About
 
-This is a tool I use to manage my picture files by hand.
-
-Some commands assume your album directory is formatted "2011-01-14 My event name" (with x's for unknown date parts).
+Simple Ruby client to the geni.com REST/OAuth API.
 
 # Installation
 
-    $ gem install pics
+    $ gem install geni
 
 # Usage
 
-    $ pics sequentize
-
-    $ pics help
+    geni = Geni::Client.new

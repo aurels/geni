@@ -28,25 +28,29 @@ module Geni
     attr_reader :url
     attr_reader :language
     attr_reader :curator
-
-    def name
-      "#{first_name} #{last_name}"
+    
+    def parents
+      immediate_family.parents
     end
     
     def father
-      #immediate_family.nodes["profile-#{id}"]
+      @father ||= parents.select { |profile| profile.gender == 'male' }.first
     end
     
     def mother
-      
+      @mother ||= parents.select { |profile| profile.gender == 'female' }.first
     end
     
     def children
-      
+      immediate_family.children
+    end
+    
+    def siblings
+      immediate_family.siblings
     end
     
     def partners
-      
+      immediate_family.partners
     end
 
     def immediate_family
