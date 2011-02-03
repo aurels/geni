@@ -1,9 +1,3 @@
-class Array
-  def tail
-    self[1..(self.size-1)] || []
-  end
-end
-
 module Geni
   class Family < Base
     def parents

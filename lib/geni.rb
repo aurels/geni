@@ -1,3 +1,4 @@
+require 'geni/array'
 require 'geni/client'
 require 'geni/base'
 require 'geni/profile'

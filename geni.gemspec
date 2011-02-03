@@ -19,11 +19,13 @@ Gem::Specification.new do |s|
     ".gitignore",
      "README.md",
      "lib/geni.rb",
+     "lib/geni/array.rb",
      "lib/geni/base.rb",
      "lib/geni/client.rb",
      "lib/geni/family.rb",
      "lib/geni/profile.rb",
-     "geni.gemspec"
+     "geni.gemspec",
+     "LICENSE"
   ]
   s.homepage = %q{http://github.com/aurels/geni}
   s.rdoc_options = ["--charset=UTF-8"]
