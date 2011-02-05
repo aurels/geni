@@ -1,4 +1,5 @@
-require 'geni/array'
+require 'oauth'
+require 'array'
 require 'geni/client'
 require 'geni/base'
 require 'geni/profile'

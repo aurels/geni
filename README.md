@@ -2,6 +2,8 @@
 
 Simple Ruby client to the geni.com REST/OAuth API.
 
+This library needs some specs !
+
 # Installation
 
     $ gem install geni

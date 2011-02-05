@@ -1,16 +1,10 @@
 module Geni
   class Client
-    
-    # Constants
-    
+
     SITE = 'https://www.geni.com'
-    
-    # Attributes
-    
+
     attr_reader :app_id, :app_secret, :access_token
-    
-    # Methods
-    
+
     def initialize(params = {})
       @app_id       = params[:app_id]
       @app_secret   = params[:app_secret]
