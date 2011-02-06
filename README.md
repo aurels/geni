@@ -11,12 +11,14 @@ This library needs some specs !
 # Example usage
 
     geni = Geni::Client.new({
-      :app_id       => 'XX',
-      :app_secret   => 'XX',
-      :access_token => an_oauth_access_token
+      :app_id     => 'XX',
+      :app_secret => 'XX',
+      :token      => 'XX'
     })
+
+    me = geni.get_profile
     
-    profile = geni.profile('an_id')
+    profile = geni.get_profile('an_id')
     
     puts profile.name
     puts profile.birth_date

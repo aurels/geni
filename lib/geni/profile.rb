@@ -55,8 +55,8 @@ module Geni
 
     def immediate_family
       @immediate_family ||= Geni::Family.new({
-        :access_token => @access_token,
-        :attrs        => @access_token.get("/api/profile-#{id}/immediate-family")
+        :client => client,
+        :attrs  => client.access_token.get("/api/profile-#{id}/immediate-family")
       })
     end
   end

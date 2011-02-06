@@ -33,12 +33,7 @@ module Geni
     end
     
     def profiles(nodes)
-      nodes.collect do |node|
-        Geni::Profile.new({
-          :access_token => @access_token,
-          :attrs        => @access_token.get("/api/#{node['id']}")
-        })
-      end
+      client.get_profile(nodes.collect { |node| node['id'].split('-').last })
     end
   end
 end
