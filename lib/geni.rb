@@ -1,8 +1,7 @@
-require 'oauth'
-require 'array'
+require 'oauth2'
+require 'oauth_hacks'
+require 'array_hacks'
 require 'geni/client'
 require 'geni/base'
 require 'geni/profile'
 require 'geni/family'
-
-puts "OK"

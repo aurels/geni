@@ -1,7 +1,9 @@
 module Geni
   class Base
+    attr_reader :client
+    
     def initialize(params = {})
-      @access_token = params[:access_token]
+      @client = params[:client]
       params[:attrs].each_pair do |attr, value|
         instance_variable_set("@#{attr}".to_sym, value)
       end
