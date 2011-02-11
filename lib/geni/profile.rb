@@ -28,6 +28,9 @@ module Geni
     attr_reader :url
     attr_reader :language
     attr_reader :curator
+    attr_reader :mugshot_urls
+    attr_reader :birth_date_parts
+    attr_reader :relationship
     
     def parents
       immediate_family.parents

@@ -42,13 +42,23 @@ module Geni
       id_or_ids.kind_of?(Array) ? profiles : profiles.first
     end
     
-    class << self
-      def redirect_uri(request)
-        uri = URI.parse(request.url)
-        uri.path = '/callback'
-        uri.query = nil
-        uri.to_s
-      end
+    def redirect_uri(request)
+      uri = URI.parse(request.url)
+      uri.path = '/callback'
+      uri.query = nil
+      uri.to_s
+    end
+    
+    def authorize_url(request)
+      oauth_client.web_server.authorize_url({
+        :redirect_uri => redirect_uri(request)
+      })
+    end
+    
+    def get_token(code, request)
+      oauth_client.web_server.get_access_token(code, {
+        :redirect_uri => redirect_uri(request)
+      }).token
     end
   end
 end
