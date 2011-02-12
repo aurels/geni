@@ -34,3 +34,5 @@ This library needs some specs !
     geni.siblings.each do |profile|
       puts profile.name
     end
+
+I've also put [a demo Rails app](https://github.com/aurels/geni-rails-example) online to show the usage of the gem with Rails or Sinatra.
