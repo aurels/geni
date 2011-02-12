@@ -21,15 +21,15 @@ Simple Ruby client to the [Geni](http://www.geni.com) REST/OAuth API.
     puts profile.name
     puts profile.birth_date
     
-    geni.parents.each do |profile|
+    profile.parents.each do |profile|
       puts profile.name
     end
     
-    geni.children.each do |profile|
+    profile.children.each do |profile|
       puts profile.name
     end
     
-    geni.siblings.each do |profile|
+    profile.siblings.each do |profile|
       puts profile.name
     end
 
