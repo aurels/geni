@@ -1,8 +1,6 @@
 # About
 
-Simple Ruby client to the geni.com REST/OAuth API.
-
-This library needs some specs !
+Simple Ruby client to the [Geni](http://www.geni.com) REST/OAuth API.
 
 # Installation
 
@@ -36,3 +34,9 @@ This library needs some specs !
     end
 
 I've also put [a demo Rails app](https://github.com/aurels/geni-rails-example) online to show the usage of the gem with Rails or Sinatra.
+
+# Feedback and help
+
++ This library needs some specs
+
+Please send [me](http://aurelien.malisart.be) your feedback if you are using the Gem
