@@ -4,9 +4,12 @@ module Geni
     SITE              = 'https://www.geni.com'
     ACCESS_TOKEN_PATH = '/oauth/token'
 
-    attr_reader :oauth_client, :access_token
+    attr_reader :oauth_client, :access_token, :callback
 
     def initialize(params = {})
+
+      @callback = params[:callback] ? params[:callback] : '/callback'
+
       @oauth_client = OAuth2::Client.new(params[:app_id], params[:app_secret],
         :site              => SITE,
         :parse_json        => true,
@@ -44,7 +47,7 @@ module Geni
     
     def redirect_uri(request)
       uri = URI.parse(request.url)
-      uri.path = '/callback'
+      uri.path = @callback
       uri.query = nil
       uri.to_s
     end
