@@ -45,6 +45,41 @@ module Geni
       id_or_ids.kind_of?(Array) ? profiles : profiles.first
     end
     
+    def get_union(id)
+      Geni::Union.new({
+        :client => self,
+        :attrs  => access_token.get("/api/union-#{id}")
+      })
+    end
+    
+    def get_user(id)
+      Geni::User.new({
+        :client => self,
+        :attrs  => access_token.get("/api/user-#{id}")
+      })
+    end
+    
+    def get_project(id)
+      Geni::Project.new({
+        :client => self,
+        :attrs  => access_token.get("/api/project-#{id}")
+      })
+    end
+    
+    def get_photo(id)
+      Geni::Photo.new({
+        :client => self,
+        :attrs  => access_token.get("/api/photo-#{id}")
+      })
+    end
+    
+    def get_document(id)
+      Geni::Document.new({
+        :client => self,
+        :attrs  => access_token.get("/api/document-#{id}")
+      })
+    end
+    
     def redirect_uri(request)
       uri = URI.parse(request.url)
       uri.path = @callback
