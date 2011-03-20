@@ -4,10 +4,7 @@ module Geni
     
     def tags
       @tags ||= client.access_token.get("/api/#{id}/tags")['results'].collect do |profile|
-        Geni::Profile.new({
-          :client => client,
-          :attrs  => client.access_token.get("/api/#{profile['id']}")
-        })
+        client.get_profile(profile['id'].split('-').last)
       end
     end
     

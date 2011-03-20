@@ -33,7 +33,7 @@ module Geni
       end
             
       results = access_token.get(url)
-      results = results['results'] if results.has_key?('results')
+      results = results['results'] if results['results']
       
       profiles = [results].flatten.collect do |profile_attrs|
         Geni::Profile.new({

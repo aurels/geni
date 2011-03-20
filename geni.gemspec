@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Aurélien Malisart","Matt Johnston"]
+  s.authors = ["Aurélien Malisart", "Matt Johnston"]
   s.date = %q{2011-02-03}
   s.description = %q{A Ruby client to the geni.com API}
   s.email = %q{aurelien.malisart@gmail.com}
@@ -15,19 +15,8 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   
-  s.files = [
-    ".gitignore",
-     "README.md",
-     "lib/geni.rb",
-     "lib/array_hacks.rb",
-     "lib/oauth_hacks.rb",
-     "lib/geni/base.rb",
-     "lib/geni/client.rb",
-     "lib/geni/family.rb",
-     "lib/geni/profile.rb",
-     "geni.gemspec",
-     "LICENSE"
-  ]
+  s.files = `git ls-files`.split("\n")
+  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.homepage = %q{http://github.com/aurels/geni}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ['lib']
@@ -40,5 +29,8 @@ Gem::Specification.new do |s|
     s.specification_version = 3
     s.add_dependency(%q<oauth2>, ["= 0.1.1"])
     s.add_dependency(%q<json>, ["= 1.5.0"])
+    
+    s.add_development_dependency("rake", "~> 0.8.7")
+    s.add_development_dependency("rspec", "2.5.0")
   end
 end

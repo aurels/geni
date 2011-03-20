@@ -2,30 +2,17 @@ module Geni
   class Project < Base
     attr_reader :id, :name, :description, :url
     
-    def collaborators
-      @collaborators ||= client.access_token.get("/api/#{id}/collaborators")['results'].collect do |profile|
-        Geni::Profile.new({
-          :client => client,
-          :attrs  => client.access_token.get("/api/#{profile['id']}")
-        })
-      end
-    end
-    
-    def profiles
-      @profiles ||= client.access_token.get("/api/#{id}/profiles")['results'].collect do |profile|
-        Geni::Profile.new({
-          :client => client,
-          :attrs  => profile
-        })
-      end
-    end
-    
-    def followers
-      @followers ||= client.access_token.get("/api/#{id}/followers")['results'].collect do |profile|
-        Geni::Profile.new({
-          :client => client,
-          :attrs  => client.access_token.get("/api/#{profile['id']}")
-        })
+    ['collaborators', 'profiles', 'followers'].each do |relation_name|
+      define_method relation_name do
+        if instance_variable_get("@#{relation_name}").nil?
+          profile_ids = client.access_token.get("/api/#{id}/#{relation_name}")['results'].collect do |profile|
+            profile['id'].split('-').last
+          end
+          
+          instance_variable_set("@#{relation_name}", client.get_profile(profile_ids))
+        else
+          instance_variable_get("@#{relation_name}")
+        end
       end
     end
   end

@@ -3,12 +3,9 @@ module Geni
     attr_reader :id, :title, :url, :date, :date_parts, :content_type, :sizes, :description, :sizes
   
     def tags
-      @tags ||= client.access_token.get("/api/#{id}/tags")['results'].collect do |profile|
-        Geni::Profile.new({
-          :client => client,
-          :attrs  => client.access_token.get("/api/#{profile['id']}")
-        })
-      end
+      @tags ||= client.get_profile(client.access_token.get("/api/#{id}/tags")['results'].collect { |profile|
+        profile['id'].split('-').last
+      })
     end
     
     def tag
