@@ -45,6 +45,13 @@ module Geni
       id_or_ids.kind_of?(Array) ? profiles : profiles.first
     end
     
+    def get_family(id)
+      Geni::Family.new({
+        :client => self,
+        :attrs  => access_token.get("/api/family-#{id}")
+      })
+    end
+    
     def get_union(id)
       Geni::Union.new({
         :client => self,
