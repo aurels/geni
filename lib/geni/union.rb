@@ -1,6 +1,8 @@
 module Geni
   class Union < Base
-    attr_reader :id, :status, :marriage_location, :marriage_date, :marriage_date_parts
+    has_fetchable_attributes %w[
+      id status marriage_location marriage_date marriage_date_parts
+    ]
                 
     def partners
       @partner_profiles ||= client.get_profile(@partners.collect { |uri| uri.split('-').last })

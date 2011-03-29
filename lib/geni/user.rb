@@ -1,6 +1,6 @@
 module Geni
   class User < Base
-    attr_reader :id, :name
+    has_fetchable_attributes %w[name]
     
     def followed_documents
     end

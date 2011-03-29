@@ -1,6 +1,8 @@
 module Geni
   class Video < Base
-    attr_reader :id, :title, :url, :date, :date_parts, :sizes
+    has_fetchable_attributes %w[
+      title url date date_parts sizes
+    ]
     
     def tags
       @tags ||= client.access_token.get("/api/#{id}/tags")['results'].collect do |profile|

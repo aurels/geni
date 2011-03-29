@@ -1,24 +1,20 @@
 module Geni
   class Profile < Base
-    attr_reader :id
-    attr_reader :first_name, :middle_name, :maiden_name, :last_name, :suffix, :display_name, :name
-    attr_reader :gender
-    attr_reader :current_residence
-    attr_reader :created_by
-    attr_reader :merge_note
-    attr_reader :public
-    attr_reader :big_tree
-    attr_reader :claimed
-    attr_reader :locked
-    attr_reader :birth_date, :birth_date_parts, :birth_location
-    attr_reader :baptism_date, :baptism_date_parts, :baptism_location
-    attr_reader :death_date, :death_date_parts, :death_location
-    attr_reader :burial_date, :blurial_date_parts, :blurial_location
-    attr_reader :url
-    attr_reader :language
-    attr_reader :mugshot_urls
-    attr_reader :relationship
-    attr_reader :is_alive
+
+    has_fetchable_attributes %w[
+      first_name middle_name maiden_name last_name suffix display_name name gender
+      current_residence created_by merge_note public big_tree claimed locked birth_date
+      borth_date_parts birth_location baptism_date baptism_date_parts baptism_location
+      death_date death_date_parts death_location burial_date blurial_date_parts blurial_location
+      url language mugshot_urls relationship is_alive
+    ]
+
+    def immediate_family
+      @immediate_family ||= Geni::Family.new({
+        :client => client,
+        :attrs  => client.access_token.get("/api/#{id}/immediate-family")
+      })
+    end
     
     def parents
       immediate_family.parents
@@ -43,13 +39,6 @@ module Geni
     def partners
       immediate_family.partners
     end
-
-    def immediate_family
-      @immediate_family ||= Geni::Family.new({
-        :client => client,
-        :attrs  => client.access_token.get("/api/#{id}/immediate-family")
-      })
-    end
     
     def managers
       @manager_profiles ||= @managers.collect do |profile_link|
@@ -72,23 +61,7 @@ module Geni
     def curator
       @curator_profile ||= @curator.nil? ? nil : client.get_profile(@curator.split('-').last)
     end
-    
-    def merge
-      # FIXME
-    end
-    
-    def merges
-    end
-    
-    def data_conflicts
-    end
-    
-    def tree_conflicts
-    end
-    
-    def tree_matches
-    end
-    
+        
     def photos
       @profiles ||= client.access_token.get("/api/#{id}/photos")['results'].collect do |photo_attrs|
         Geni::Photo.new({

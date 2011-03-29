@@ -1,6 +1,8 @@
 module Geni
   class Document < Base
-    attr_reader :id, :title, :url, :date, :date_parts, :content_type, :sizes, :description, :sizes
+    has_fetchable_attributes %w[
+      title url date date_parts content_type description sizes
+    ]
   
     def tags
       @tags ||= client.get_profile(client.access_token.get("/api/#{id}/tags")['results'].collect { |profile|

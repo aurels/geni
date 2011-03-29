@@ -1,6 +1,6 @@
 module Geni
   class Project < Base
-    attr_reader :id, :name, :description, :url
+    has_fetchable_attributes %w[name description url]
     
     ['collaborators', 'profiles', 'followers'].each do |relation_name|
       define_method relation_name do
