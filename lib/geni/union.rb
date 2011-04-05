@@ -1,7 +1,7 @@
 module Geni
   class Union < Base
     has_fetchable_attributes %w[
-      id status marriage_location marriage_date marriage_date_parts
+      status marriage_location marriage_date marriage_date_parts url
     ]
                 
     def partners

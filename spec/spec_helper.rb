@@ -1,12 +1,13 @@
 $LOAD_PATH.unshift File.dirname(File.expand_path(__FILE__)) + '/lib'
 
 require 'rubygems'
+require 'digest/md5'
 require 'oauth2'
 require 'geni'
 
 module MockedResponsesHelper
   def get_mocked_response(url)
-    identifier = url.gsub(/(\/|\?)/, '_')
+    identifier = Digest::MD5.hexdigest(url.gsub(/(\/|\?)/, '_'))
     path = "spec/support/mocked_responses/#{identifier}.txt"
     if File.exists?(path)
       File.read(path)

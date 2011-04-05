@@ -25,8 +25,7 @@ describe Geni::Project do
   it "has an URL" do
     @project.url.should == 'https://www.geni.com/api/project-6'
   end
-  
-  it "has retrievable basic informations"
+
   it "has collaborators"
   it "has profiles"
   it "has followers"
