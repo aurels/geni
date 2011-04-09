@@ -5,7 +5,13 @@ module Geni
     def initialize(params = {})
       @id = params[:id]
       @client = params[:client]
-      @fetched = false
+      @fetched = params[:fetched] || false
+      
+      if params.has_key?(:attrs)
+        params[:attrs].each_pair do |key, value|
+          instance_variable_set("@#{key}", value)
+        end
+      end
     end
     
     def fetched?

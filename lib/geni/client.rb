@@ -18,75 +18,50 @@ module Geni
       
       @access_token = OAuth2::AccessToken.new(oauth_client, params[:token])
     end
-    
-    def get_profile(id_or_ids = nil)
-      if id_or_ids.nil?
-        url = "/api/profile"
-      elsif id_or_ids.kind_of?(Array)
-        if id_or_ids.any?
-          url = "/api/profile-#{id_or_ids.join(',')}"
-        else
-          return []
-        end
-      else
-        url = "/api/profile-#{id_or_ids}"
-      end
             
-      results = access_token.get(url)
-      results = results['results'] if results['results']
-      
-      profiles = [results].flatten.collect do |profile_attrs|
-        Geni::Profile.new({
+    TYPES = {
+      'profile'  => Geni::Profile,
+      'union'    => Geni::Union,
+      'project'  => Geni::Project,
+      'photo'    => Geni::Photo,
+      'document' => Geni::Document,
+      'video'    => Geni::Video
+    }
+    
+    TYPES.each_pair do |type, klass|
+      define_method "get_#{type}" do |id|
+        entity = klass.new({
           :client => self,
-          :attrs  => profile_attrs
+          :id     => id
         })
       end
+    end
+    
+    def get_profiles(ids)
+      return [] if ids.empty?
+      return [get_profile(ids)] if ids.size == 1
       
-      id_or_ids.kind_of?(Array) ? profiles : profiles.first
+      numbers = ids.collect { |id| id.gsub(/profile-/, '') }.join(',')
+      url = "/api/profile-#{numbers}"
+      results = access_token.get(url)['results']
+      
+      results.collect do |profile_attrs|
+        Geni::Profile.new({
+          :client  => self,
+          :attrs   => profile_attrs,
+          :fetched => true
+        })
+      end
     end
     
-    def get_family(id)
-      Geni::Family.new({
-        :client => self,
-        :attrs  => access_token.get("/api/family-#{id}")
+    def me
+      Geni::Profile.new({
+        :client  => self,
+        :attrs   => access_token.get('/api/profile'),
+        :fetched => true
       })
     end
-    
-    def get_union(id)
-      Geni::Union.new({
-        :client => self,
-        :attrs  => access_token.get("/api/union-#{id}")
-      })
-    end
-    
-    def get_user(id)
-      Geni::User.new({
-        :client => self,
-        :attrs  => access_token.get("/api/user-#{id}")
-      })
-    end
-    
-    def get_project(id)
-      Geni::Project.new({
-        :client => self,
-        :attrs  => access_token.get("/api/project-#{id}")
-      })
-    end
-    
-    def get_photo(id)
-      Geni::Photo.new({
-        :client => self,
-        :attrs  => access_token.get("/api/photo-#{id}")
-      })
-    end
-    
-    def get_document(id)
-      Geni::Document.new({
-        :client => self,
-        :attrs  => access_token.get("/api/document-#{id}")
-      })
-    end
-    
+        
     def redirect_uri(request)
       uri = URI.parse(request.url)
       uri.path = @callback

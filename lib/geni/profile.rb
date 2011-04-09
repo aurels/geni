@@ -63,19 +63,21 @@ module Geni
     end
         
     def photos
-      @profiles ||= client.access_token.get("/api/#{id}/photos")['results'].collect do |photo_attrs|
+      @photos ||= client.access_token.get("/api/#{id}/photos")['results'].to_a.collect do |photo_attrs|
         Geni::Photo.new({
-          :client => client,
-          :attrs  => photo_attrs
+          :client  => client,
+          :attrs   => photo_attrs,
+          :fetched => true
         })
       end
     end
     
     def videos
-      @videos ||= client.access_token.get("/api/#{id}/videos")['results'].collect do |video_attrs|
+      @videos ||= client.access_token.get("/api/#{id}/videos")['results'].to_a.collect do |video_attrs|
         Geni::Photo.new({
-          :client => client,
-          :attrs  => video_attrs
+          :client  => client,
+          :attrs   => video_attrs,
+          :fetched => true
         })
       end
     end
@@ -83,8 +85,9 @@ module Geni
     def documents
       @documents ||= client.access_token.get("/api/#{id}/documents")['results'].collect do |documents_attrs|
         Geni::Photo.new({
-          :client => client,
-          :attrs  => documents_attrs
+          :client  => client,
+          :attrs   => documents_attrs,
+          :fetched => true
         })
       end
     end

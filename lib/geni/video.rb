@@ -5,9 +5,7 @@ module Geni
     ]
     
     def tags
-      @tags ||= client.access_token.get("/api/#{id}/tags")['results'].collect do |profile|
-        client.get_profile(profile['id'].split('-').last)
-      end
+      # FIXME
     end
     
     def tag

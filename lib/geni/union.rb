@@ -5,11 +5,11 @@ module Geni
     ]
                 
     def partners
-      @partner_profiles ||= client.get_profile(@partners.collect { |uri| uri.split('-').last })
+      @partner_profiles ||= client.get_profiles(@partners.collect { |uri| uri.split('-').last })
     end
     
     def children
-      @children_profiles ||= client.get_profile(@children.collect { |uri| uri.split('-').last })
+      @children_profiles ||= client.get_profiles(@children.collect { |uri| uri.split('-').last })
     end
   end
 end

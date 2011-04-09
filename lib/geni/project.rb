@@ -9,7 +9,7 @@ module Geni
             profile['id'].split('-').last
           end
           
-          instance_variable_set("@#{relation_name}", client.get_profile(profile_ids))
+          instance_variable_set("@#{relation_name}", client.get_profiles(profile_ids))
         else
           instance_variable_get("@#{relation_name}")
         end

@@ -4,14 +4,6 @@ describe Geni::Union do
   before :all do
     @client = get_geni_client
     @union = Geni::Union.new(:id => 'union-12276689', :client => @client)
-    
-    @client.oauth_client.connection.build do |b|
-      b.adapter :test do |stub|
-        stub.get('/api/union-12276689?access_token=FAKE_OAUTH_TOKEN') do |env|
-          [200, {}, get_mocked_response("https://www.geni.com/api/union-12276689?access_token=#{get_geni_token}")]
-        end
-      end
-    end
   end
   
   it "has a status" do
@@ -39,8 +31,14 @@ describe Geni::Union do
   end
     
   it 'has partners' do
+    partners = @union.partners
+    partners.class.should == Array
+    partners.first.class.should == Geni::Profile
   end
   
   it 'has children' do
+    children = @union.children
+    children.class.should == Array
+    children.should be_empty
   end
 end

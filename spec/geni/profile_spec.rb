@@ -4,18 +4,6 @@ describe Geni::Profile do
   before :all do
     @client = get_geni_client
     @profile = Geni::Profile.new(:id => 'profile-90990667', :client => @client)
-    
-    @client.oauth_client.connection.build do |b|
-      b.adapter :test do |stub|
-        stub.get('/api/profile-90990667?access_token=FAKE_OAUTH_TOKEN') do |env|
-          [200, {}, get_mocked_response("https://www.geni.com/api/profile-90990667?access_token=#{get_geni_token}")]
-        end
-        
-        stub.get('/api/profile-90990667/immediate-family?access_token=FAKE_OAUTH_TOKEN') do |env|
-          [200, {}, get_mocked_response("https://www.geni.com/api/profile-90990667/immediate-family?access_token=#{get_geni_token}")]
-        end
-      end
-    end
   end
   
   it "is not fetched by default" do
@@ -44,12 +32,35 @@ describe Geni::Profile do
     family.class.should == Geni::Family
   end
   
-  it "has managers"
-  it "has been merged into profiles"
-  it "has requested merges"
-  it "has a curator"
+  it "has managers" do
+    @profile.managers.class.should == Array
+  end
   
-  it "has photos"
-  it "has videos"
-  it "has documents"
+  it "has been merged into profiles" do
+    @profile.merged_into.class.should == Array
+  end
+  
+  it "has requested merges" do
+    @profile.requested_merges.class.should == Array
+  end
+  
+  it "has a curator" do
+    #curator = @profile.curator
+    #curator.class.should == Geni::Profile
+  end
+  
+  it "has photos" do
+    photos = @profile.photos
+    photos.class.should == Array
+  end
+  
+  it "has videos" do
+    videos = @profile.videos
+    videos.class.should == Array
+  end
+  
+  it "has documents" do
+    documents = @profile.documents
+    documents.class.should == Array
+  end
 end

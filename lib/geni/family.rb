@@ -1,5 +1,16 @@
 module Geni
-  class Family < Base
+  class Family
+    
+    attr_reader :client, :focus
+    
+    def initialize(params)
+      @client = params[:client]
+      
+      params[:attrs].each_pair do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
+    end
+        
     def parents
       @parents ||= profiles(walk(focus_node, ['child', 'partner']))
     end
@@ -33,7 +44,7 @@ module Geni
     end
     
     def profiles(nodes)
-      client.get_profile(nodes.collect { |node| node['id'].split('-').last })
+      client.get_profiles(nodes.collect { |node| node['id'].split('-').last })
     end
   end
 end

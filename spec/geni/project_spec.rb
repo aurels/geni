@@ -4,14 +4,6 @@ describe Geni::Project do
   before :all do
     @client = get_geni_client
     @project = Geni::Project.new(:id => 'project-6', :client => @client)
-    
-    @client.oauth_client.connection.build do |b|
-      b.adapter :test do |stub|
-        stub.get('/api/project-6?access_token=FAKE_OAUTH_TOKEN') do |env|
-          [200, {}, get_mocked_response("https://www.geni.com/api/project-6?access_token=#{get_geni_token}")]
-        end
-      end
-    end
   end
   
   it "has a name" do
@@ -26,7 +18,27 @@ describe Geni::Project do
     @project.url.should == 'https://www.geni.com/api/project-6'
   end
 
-  it "has collaborators"
-  it "has profiles"
-  it "has followers"
+  it "has collaborators" do
+    collaborators = @project.collaborators
+    collaborators.class.should == Array
+    collaborators.collect(&:id).should include('profile-34069147')
+    collaborators.first.class.should == Geni::Profile
+    collaborators.first.should be_fetched
+  end
+  
+  it "has profiles" do
+    profiles = @project.profiles
+    profiles.class.should == Array
+    profiles.collect(&:id).should include('profile-37184377')
+    profiles.first.class.should == Geni::Profile
+    profiles.first.should be_fetched
+  end
+  
+  it "has followers" do
+    followers = @project.followers
+    followers.class.should == Array
+    followers.collect(&:id).should include('profile-34069147')
+    followers.first.class.should == Geni::Profile
+    followers.first.should be_fetched
+  end
 end

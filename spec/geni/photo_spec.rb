@@ -4,14 +4,6 @@ describe Geni::Photo do
   before :all do
     @client = get_geni_client
     @photo = Geni::Photo.new(:id => 'photo-21557506', :client => @client)
-    
-    @client.oauth_client.connection.build do |b|
-      b.adapter :test do |stub|
-        stub.get('/api/photo-21557506?access_token=FAKE_OAUTH_TOKEN') do |env|
-          [200, {}, get_mocked_response("https://www.geni.com/api/photo-21557506?access_token=#{get_geni_token}")]
-        end
-      end
-    end
   end
   
   it "has a title" do
