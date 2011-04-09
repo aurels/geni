@@ -29,7 +29,7 @@ describe Geni::Profile do
   
   it "has an immediate family" do
     family = @profile.immediate_family
-    family.class.should == Geni::Family
+    family.class.should == Geni::Profile::ImmediateFamily
   end
   
   it "has managers" do

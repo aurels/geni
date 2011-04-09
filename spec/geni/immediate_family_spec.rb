@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Geni::Family do
+describe Geni::Profile::ImmediateFamily do
   before :all do
     @client = get_geni_client
     @family = @client.get_profile('profile-90990739').immediate_family
