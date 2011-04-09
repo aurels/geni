@@ -44,7 +44,7 @@ module Geni
     end
     
     def profiles(nodes)
-      client.get_profiles(nodes.collect { |node| node['id'].split('-').last })
+      client.get_profiles(nodes.collect { |node| node['id'] })
     end
   end
 end

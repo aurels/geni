@@ -30,6 +30,8 @@ module GeniSpecHelper
     })
     
     mock_urls = [
+      '/api/profile',
+      '/api/profile-90990730',
       '/api/profile-90990739/immediate-family',
       '/api/profile-90990897,90990889',
       '/api/profile-90990832,90990843,90990667',

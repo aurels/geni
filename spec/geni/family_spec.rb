@@ -7,8 +7,6 @@ describe Geni::Family do
   end
   
   it 'has a focus node' do
-    puts "blop"
-    puts @family.focus
     @family.focus.class.should == Hash
     @family.focus['id'].should == 'profile-90990739'
   end

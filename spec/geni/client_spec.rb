@@ -17,6 +17,12 @@ describe Geni::Client do
     
   end
   
+  it "can get current user's profile" do
+    profile = @client.me
+    profile.class.should == Geni::Profile
+    profile.id.should == 'profile-90990667'
+  end
+  
   it "can get a single profile" do
     profile = @client.get_profile('profile-90990667')
     profile.class.should == Geni::Profile
