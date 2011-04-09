@@ -33,12 +33,17 @@ Simple Ruby client to the [Geni](http://www.geni.com) REST/OAuth API.
       puts profile.name
     end
 
+Support is available for profiles, documents, photos, projects, unions, videos.
+
 I've also put [a demo Rails app](https://github.com/aurels/geni-rails-example) online to show the usage of the gem with Rails or Sinatra.
 
-# Not done yet
+# Tests
 
-+ This gem needs some specs
-+ This gem only access profile and immediate family information.  I don't have a paid account, I cannot implement everything now.
+To run the specs :
+
+    $ rake spec
+
+All request responses are stubbed via Faraday.
 
 # Feedback and help
 
