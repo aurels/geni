@@ -3,7 +3,14 @@ require 'spec_helper'
 describe Geni::Video do
   before :all do
     @client = get_geni_client
-    @video = Geni::Video.new(:id => 'video-1', :client => @client)
+    @video = Geni::Video.new({
+      :id => 'video-1',
+      :client => @client
+    })
+  end
+  
+  it "has an URL" do
+    @video.url.should == 'https://www.geni.com/api/video-1'
   end
   
   it "has a title" do
@@ -11,26 +18,26 @@ describe Geni::Video do
   end
   
   it "has a date" do
-    #@video.created_on.should == '2008-07-23 19:33:22'
+    # FIXME
   end
   
   it "has date parts" do
-    
+    # FIXME
   end
   
   it "has sizes" do
-    
+    # FIXME
   end
   
   it "has tags" do
-    #tags = @video.tags
+    # FIXME
   end
   
   it "can be tagged" do
-    
+    # FIXME
   end
   
   it "can be untagged" do
-    
+    # FIXME
   end
 end

@@ -30,7 +30,15 @@ describe Geni::Photo do
     @photo.album_id.should == '44886'
   end
   
-  it "has tags"
-  it "can be tagged"
-  it "can be untagged"
+  it "has tags" do
+    # FIXME
+  end
+  
+  it "can be tagged" do
+    # FIXME
+  end
+  
+  it "can be untagged" do
+    # FIXME
+  end
 end

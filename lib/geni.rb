@@ -1,10 +1,11 @@
 require 'oauth2'
 require 'oauth_hacks'
 require 'array_hacks'
+
 require 'geni/base'
+require 'geni/taggable'
 require 'geni/profile'
 require 'geni/union'
-require 'geni/user'
 require 'geni/project'
 require 'geni/photo'
 require 'geni/document'

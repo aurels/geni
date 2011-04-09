@@ -34,17 +34,21 @@ describe Geni::Profile do
   
   it "has managers" do
     @profile.managers.class.should == Array
+    # NEEDS MORE STUFF
   end
   
   it "has been merged into profiles" do
     @profile.merged_into.class.should == Array
+    # NEEDS MORE STUFF
   end
   
   it "has requested merges" do
     @profile.requested_merges.class.should == Array
+    # NEEDS MORE STUFF
   end
   
   it "has a curator" do
+    # FIXME
     #curator = @profile.curator
     #curator.class.should == Geni::Profile
   end

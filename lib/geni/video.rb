@@ -4,16 +4,6 @@ module Geni
       title url date date_parts sizes
     ]
     
-    def tags
-      # FIXME
-    end
-    
-    def tag
-      # FIXME
-    end
-    
-    def untag
-      # FIXME
-    end
+    include Taggable
   end
 end

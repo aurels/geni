@@ -31,6 +31,10 @@ describe Geni::Document do
   end
   
   it "has sizes" do
+    @document.sizes.class.should == Hash
+    @document.sizes.keys.should include('thumb')
+    @document.sizes.keys.should include('original')
+    @document.sizes.keys.should include('large')
   end
   
   it "has tags" do
@@ -38,8 +42,10 @@ describe Geni::Document do
   end
   
   it "can be tagged" do
+    # FIXME
   end
   
   it "can be untagged" do
+    # FIXME
   end
 end
