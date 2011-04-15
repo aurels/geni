@@ -61,7 +61,7 @@ module Geni
     end
     
     def curator
-      @curator_profile ||= @curator.nil? ? nil : client.get_profile(@curator.split('-').last)
+      @curator_profile ||= @curator.nil? ? nil : client.get_profile(@curator.split('/').last)
     end
         
     def photos

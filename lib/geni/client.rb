@@ -39,7 +39,7 @@ module Geni
     
     def get_profiles(ids)
       return [] if ids.empty?
-      return [get_profile(ids)] if ids.size == 1
+      return [get_profile(ids.first)] if ids.one?
       
       numbers = ids.collect { |id| id.gsub(/profile-/, '') }.join(',')
       url = "/api/profile-#{numbers}"
@@ -60,6 +60,11 @@ module Geni
         :attrs   => access_token.get('/api/profile'),
         :fetched => true
       })
+    end
+    
+    def [](entity_id)
+      entity_type = entity_id.split('-').first
+      send("get_#{entity_type}", entity_id)
     end
         
     def redirect_uri(request)

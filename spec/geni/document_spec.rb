@@ -43,9 +43,11 @@ describe Geni::Document do
   
   it "can be tagged" do
     # FIXME
+    pending
   end
   
   it "can be untagged" do
     # FIXME
+    pending
   end
 end

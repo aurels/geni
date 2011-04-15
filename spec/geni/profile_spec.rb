@@ -35,11 +35,13 @@ describe Geni::Profile do
   it "has managers" do
     @profile.managers.class.should == Array
     # NEEDS MORE STUFF
+    pending
   end
   
   it "has been merged into profiles" do
     @profile.merged_into.class.should == Array
     # NEEDS MORE STUFF
+    pending
   end
   
   it "has requested merges" do
@@ -48,9 +50,10 @@ describe Geni::Profile do
   end
   
   it "has a curator" do
-    # FIXME
-    #curator = @profile.curator
-    #curator.class.should == Geni::Profile
+    @profile.instance_variable_set('@curator', 'https://www.geni.com/api/profile-90990667') # stub
+    curator = @profile.curator
+    curator.class.should == Geni::Profile
+    curator.id.should == 'profile-90990667'
   end
   
   it "has photos" do

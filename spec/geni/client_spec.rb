@@ -7,14 +7,16 @@ describe Geni::Client do
   
   it "has an authorize URL" do
     #puts @client.authorize_url
+    pending
   end
   
   it "has an OAuth2 access token" do
     @client.access_token.class.should == OAuth2::AccessToken
+    pending
   end
   
   it "has an OAuth2 callback URL" do
-    
+    pending
   end
   
   it "can get current user's profile" do
@@ -58,5 +60,20 @@ describe Geni::Client do
     document = @client.get_document('document-339953')
     document.class.should == Geni::Document
     document.id.should == 'document-339953'
+  end
+  
+  it "can get a video" do
+    video = @client.get_video('video-1')
+    video.class.should == Geni::Video
+    video.id.should == 'video-1'
+  end
+  
+  it "can get entities via a basic hash-style syntax" do
+    @client['profile-90990667'].class.should == Geni::Profile
+    @client['union-12276689'].class.should   == Geni::Union
+    @client['photo-21557506'].class.should   == Geni::Photo
+    @client['project-6'].class.should        == Geni::Project
+    @client['document-339953'].class.should  == Geni::Document
+    @client['video-1'].class.should          == Geni::Video
   end
 end
