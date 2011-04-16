@@ -43,7 +43,7 @@ To run the specs :
 
     $ rake spec
 
-All request responses are stubbed via Faraday.
+All request responses are stubbed via Faraday in `spec/support/mocked_responses`.
 
 # Feedback and help
 
