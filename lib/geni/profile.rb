@@ -6,7 +6,7 @@ module Geni
     has_fetchable_attributes %w[
       first_name middle_name maiden_name last_name suffix display_name name gender
       current_residence created_by merge_note public big_tree claimed locked birth_date
-      borth_date_parts birth_location baptism_date baptism_date_parts baptism_location
+      birth_date_parts birth_location baptism_date baptism_date_parts baptism_location
       death_date death_date_parts death_location burial_date blurial_date_parts blurial_location
       url language mugshot_urls relationship is_alive
     ]
